@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="pattern"
+            type="com.keremkulac.karakoctekstil.model.Pattern" />
+
+        <variable
+            name="clickListener"
+            type="com.keremkulac.karakoctekstil.adapter.PatternClickListener" />
+    </data>
+    
+    <com.google.android.material.card.MaterialCardView
+        android:layout_margin="10dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_gravity="end"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:id="@+id/patternMenu"
+                android:layout_width="30dp"
+                android:src="@drawable/ic_more2"
+                android:layout_height="30dp"
+                android:contentDescription="TODO" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
+
+                <ImageView
+                    android:id="@+id/patternImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:downloadUrl="@{pattern.pattern_url}"
+                    android:layout_weight="1.2"
+                    android:contentDescription="TODO" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="2">
+
+                    <LinearLayout
+                        android:layout_margin="5dp"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textStyle="bold"
+                            android:text="@string/patternName"
+                            android:layout_margin="5dp"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:text="@string/patternHeight"
+                            android:layout_margin="5dp"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:text="@string/patternWidth"
+                            android:layout_margin="5dp"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:text="@string/patternHit"
+                            android:layout_margin="5dp"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_margin="5dp"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+
+
+                        <TextView
+                            android:id="@+id/patternName"
+                            android:text="@{pattern.name}"
+                            android:layout_margin="5dp"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/patternHeight"
+                            android:text="@{pattern.height.concat(@string/space).concat(@string/cm)}"
+                            android:layout_margin="5dp"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/patternWidth"
+                            android:text="@{pattern.width.concat(@string/space).concat(@string/cm)}"
+                            android:layout_margin="5dp"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/patternHit"
+                            android:text="@{pattern.hit}"
+                            android:layout_margin="5dp"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

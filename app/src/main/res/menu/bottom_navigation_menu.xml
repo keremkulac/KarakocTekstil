@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/navPattern"
+        android:title="@string/patternList"
+        android:icon="@drawable/ic_pattern"/>
+
+    <item android:id="@+id/navOrder"
+        android:title="@string/myOrders"
+        android:icon="@drawable/ic_order"/>
+
+    <item android:id="@+id/navPlaceHolder"
+        android:title="" />
+    <item android:id="@+id/navCost"
+        android:title="@string/calculatePrice"
+        android:icon="@drawable/ic_cost"/>
+
+    <item android:id="@+id/navExit"
+        android:title="@string/exit"
+        android:icon="@drawable/ic_exit"/>
+</menu>

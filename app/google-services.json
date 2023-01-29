@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "126299686408",
+    "project_id": "karakoctextile",
+    "storage_bucket": "karakoctextile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126299686408:android:6df7d7cbeb87fe8d7df3bd",
+        "android_client_info": {
+          "package_name": "com.keremkulac.karakoctekstil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126299686408-36k6sb8ui661pf96buvoikdhgpf0mh7f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEukOTZ1NZWW9TRNqkHe1XapM2UnMYMxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126299686408-36k6sb8ui661pf96buvoikdhgpf0mh7f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
