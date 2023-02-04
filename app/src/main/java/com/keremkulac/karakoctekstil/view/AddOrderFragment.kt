@@ -56,16 +56,19 @@ class AddOrderFragment : Fragment() {
             val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
             val date = ZonedDateTime.now(ZoneId.of("Asia/Istanbul")).toLocalDateTime().format(formatter)
             val patternName = binding.addOrderName.text.toString().uppercase().trim()
-            val stripCount = binding.addOrderStripCount.text.toString()
+            val piece = binding.addOrderPiece.text.toString()
             val orderClothType = binding.orderSpinnerClothType.text.toString()
             val orderSeries = binding.orderSpinnerSeries.text.toString()
             val orderStatus = "ongoing"
-            if(patternName.equals("") || stripCount.equals("") || orderClothType.equals("") || orderSeries.equals("")){
+            val uuid = UUID.randomUUID().toString()
+            if(patternName.equals("") || piece.equals("") || orderClothType.equals("") || orderSeries.equals("")){
                 Toast.makeText(requireContext(),"Lütfen tüm bilgileri eksiksiz giriniz", Toast.LENGTH_SHORT).show()
             }else{
-                order = Order(patternName,stripCount,orderClothType,orderSeries,date,orderStatus)
+
+               // order = Order(patternName,piece,orderClothType,orderSeries,date,orderStatus,uuid,piece,date)
+                order = Order(patternName,piece,piece,orderClothType,orderSeries,date,date,orderStatus,uuid)
                 viewModel.saveOrderFromFirebase(order,requireActivity())
-                replaceFragment(OrderFragment(),requireActivity().supportFragmentManager)
+              //  replaceFragment(OrderFragment(),requireActivity().supportFragmentManager)
             }
     }
 

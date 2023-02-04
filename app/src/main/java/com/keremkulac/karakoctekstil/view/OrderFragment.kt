@@ -10,9 +10,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.keremkulac.karakoctekstil.R
-import com.keremkulac.karakoctekstil.adapter.OrderAdapter
+import com.keremkulac.karakoctekstil.adapter.OngoingOrderAdapter
 import com.keremkulac.karakoctekstil.adapter.OrderTablayoutAdapter
-import com.keremkulac.karakoctekstil.adapter.PatternAdapter
 import com.keremkulac.karakoctekstil.databinding.FragmentOrderBinding
 import com.keremkulac.karakoctekstil.model.Order
 import com.keremkulac.karakoctekstil.viewmodel.OrderViewModel
@@ -20,7 +19,7 @@ import com.keremkulac.karakoctekstil.viewmodel.OrderViewModel
 class OrderFragment : Fragment() {
 
     private lateinit var binding : FragmentOrderBinding
-    private val orderAdapter = OrderAdapter(arrayListOf())
+   // private val orderAdapter = OngoingOrderAdapter(arrayListOf())
     private lateinit var viewModel : OrderViewModel
     private lateinit var orderList : ArrayList<Order>
 
@@ -52,8 +51,8 @@ class OrderFragment : Fragment() {
         viewModel.orders.observe(viewLifecycleOwner, Observer { orders ->
             orders?.let {
               //  orderAdapter.updatePatternList(patterns)
-                orderAdapter.updateOrderList(orders)
-                orderList.addAll(orders)
+              //  orderAdapter.updateOrderList(orders)
+              //  orderList.addAll(orders)
             }
         })
     }
@@ -75,7 +74,7 @@ class OrderFragment : Fragment() {
                                 return false
                             }
                             override fun onQueryTextChange(newText: String): Boolean {
-                                viewModel.filter(newText,orderList,requireContext(),orderAdapter)
+                               // viewModel.filter(newText,orderList,requireContext(),orderAdapter)
                                 return true
                             }
                         })

@@ -5,7 +5,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
-import com.keremkulac.karakoctekstil.adapter.OrderAdapter
+import com.keremkulac.karakoctekstil.adapter.OngoingOrderAdapter
 import com.keremkulac.karakoctekstil.model.Order
 
 class FinishedOrderViewModel(application: Application) : BaseViewModel(application) {
@@ -28,10 +28,13 @@ class FinishedOrderViewModel(application: Application) : BaseViewModel(applicati
                     order = Order(
                         firebaseData.data.getValue("orderPatternName").toString(),
                         firebaseData.data.getValue("orderPiece").toString(),
+                        firebaseData.data.getValue("remainderOrderPiece").toString(),
                         firebaseData.data.getValue("orderClothType").toString(),
                         firebaseData.data.getValue("orderSeries").toString(),
-                        firebaseData.data.getValue("date").toString() ,
-                        firebaseData.data.getValue("orderStatus").toString()
+                        firebaseData.data.getValue("orderDate").toString() ,
+                        firebaseData.data.getValue("orderEndDate").toString() ,
+                        firebaseData.data.getValue("orderStatus").toString(),
+                        firebaseData.data.getValue("orderID").toString(),
                     )
                     if(firebaseData.data.getValue("orderStatus").toString().equals("finished")){
                         list.add(order)
@@ -54,7 +57,7 @@ class FinishedOrderViewModel(application: Application) : BaseViewModel(applicati
         orderLoading.value = false
     }
 
-    fun filter(text: String, orderList : ArrayList<Order>, context: Context, orderAdapter : OrderAdapter) {
+    fun filter(text: String, orderList : ArrayList<Order>, context: Context, orderAdapter : OngoingOrderAdapter) {
         val filteredlist: ArrayList<Order> = ArrayList()
 
         for (item in orderList) {

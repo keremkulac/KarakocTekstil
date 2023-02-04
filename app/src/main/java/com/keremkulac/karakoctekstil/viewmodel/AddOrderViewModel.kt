@@ -27,20 +27,34 @@ class AddOrderViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun saveOrderFromFirebase(order : Order,fragmentActivity: FragmentActivity){
-        var firestore = FirebaseFirestore.getInstance()
+        val firestore = FirebaseFirestore.getInstance()
         val hmOrder = HashMap<String, Any>()
         hmOrder["orderPatternName"] = order.patternName
         hmOrder["orderClothType"] = order.clothType
         hmOrder["orderSeries"] = order.series
         hmOrder["orderPiece"] =  order.piece.toString()
-        hmOrder["date"] =  order.date
+        hmOrder["remainderOrderPiece"] = order.piece.toString()
+        hmOrder["orderDate"] =  order.orderDate
+        hmOrder["orderEndDate"] =  order.orderEndDate
         hmOrder["orderStatus"] = order.status
-        firestore.collection("Orders").document(order.patternName)
+        hmOrder["orderID"] = order.orderID
+        firestore.collection("Orders").document(order.orderID)
             .set(hmOrder)
             .addOnSuccessListener {
                 Toast.makeText(fragmentActivity.applicationContext,"Siparişiniz eklendi",Toast.LENGTH_SHORT).show()
                 replaceFragment(OrderFragment(),fragmentActivity.supportFragmentManager)
             }
     }
+    /*
+      val patternName : String,
+    val piece: String?,
+    val remainderPiece: String?,
+    val clothType : String,
+    val series : String,
+    val orderDate : String,
+    val orderEndDate : String,
+    val status : String,
+    val orderID : String)
+     */
 
 }

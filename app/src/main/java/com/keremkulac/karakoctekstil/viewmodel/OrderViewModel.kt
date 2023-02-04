@@ -5,7 +5,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
-import com.keremkulac.karakoctekstil.adapter.OrderAdapter
+import com.keremkulac.karakoctekstil.adapter.OngoingOrderAdapter
 import com.keremkulac.karakoctekstil.model.Order
 
 class OrderViewModel(application: Application) : BaseViewModel(application) {
@@ -19,6 +19,7 @@ class OrderViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun getOrdersFromFirebase(){
+        /*
         val list = ArrayList<Order>()
         var order : Order
         val firestore = FirebaseFirestore.getInstance()
@@ -31,7 +32,8 @@ class OrderViewModel(application: Application) : BaseViewModel(application) {
                         firebaseData.data.getValue("orderClothType").toString(),
                         firebaseData.data.getValue("orderSeries").toString(),
                         firebaseData.data.getValue("date").toString() ,
-                        firebaseData.data.getValue("orderStatus").toString()
+                        firebaseData.data.getValue("orderStatus").toString(),
+                        firebaseData.data.getValue("orderID").toString()
                     )
                     list.add(order)
                 }
@@ -45,6 +47,8 @@ class OrderViewModel(application: Application) : BaseViewModel(application) {
                 Log.d("TAG", "get failed with ", exception)
             }
 
+         */
+
     }
     private fun showOrders(orderList : List<Order>){
         orders.value = orderList
@@ -52,7 +56,7 @@ class OrderViewModel(application: Application) : BaseViewModel(application) {
         orderLoading.value = false
     }
 
-     fun filter(text: String,orderList : ArrayList<Order>,context: Context,orderAdapter : OrderAdapter) {
+     fun filter(text: String,orderList : ArrayList<Order>,context: Context,orderAdapter : OngoingOrderAdapter) {
         val filteredlist: ArrayList<Order> = ArrayList()
 
         for (item in orderList) {

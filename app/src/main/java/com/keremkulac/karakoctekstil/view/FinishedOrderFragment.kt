@@ -10,7 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.karakoctekstil.R
-import com.keremkulac.karakoctekstil.adapter.OrderAdapter
+import com.keremkulac.karakoctekstil.adapter.FinishedOrderAdapter
+import com.keremkulac.karakoctekstil.adapter.OngoingOrderAdapter
 import com.keremkulac.karakoctekstil.databinding.FragmentFinishedOrderBinding
 import com.keremkulac.karakoctekstil.model.Order
 import com.keremkulac.karakoctekstil.viewmodel.FinishedOrderViewModel
@@ -19,7 +20,7 @@ class FinishedOrderFragment : Fragment() {
 
     private lateinit var binding : FragmentFinishedOrderBinding
     private lateinit var viewModel : FinishedOrderViewModel
-    private val orderAdapter = OrderAdapter(arrayListOf())
+    private val finishedOrderAdapter = FinishedOrderAdapter(arrayListOf())
     private lateinit var orderList : ArrayList<Order>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,7 @@ class FinishedOrderFragment : Fragment() {
 
     private  fun createRecyclerView(){
         binding.finishedOrderRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.finishedOrderRecyclerView.adapter = orderAdapter
+        binding.finishedOrderRecyclerView.adapter = finishedOrderAdapter
     }
 
     private fun refreshPatterns(){
@@ -64,7 +65,7 @@ class FinishedOrderFragment : Fragment() {
                 binding.finishedOrderRecyclerView.visibility = View.VISIBLE
                 binding.finishedOrderError.visibility = View.GONE
                 binding.finishedOrderLoading.visibility = View.GONE
-                orderAdapter.updateOrderList(orders)
+                finishedOrderAdapter.updateOrderList(orders)
                 orderList.addAll(orders)
             }
         })
@@ -86,7 +87,7 @@ class FinishedOrderFragment : Fragment() {
                                 return false
                             }
                             override fun onQueryTextChange(newText: String): Boolean {
-                                viewModel.filter(newText,orderList,requireContext(),orderAdapter)
+                               // viewModel.filter(newText,orderList,requireContext(),finishedOrderAdapter)
                                 return true
                             }
                         })

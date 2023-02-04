@@ -10,18 +10,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.karakoctekstil.R
-import com.keremkulac.karakoctekstil.adapter.OrderAdapter
+import com.keremkulac.karakoctekstil.adapter.OngoingOrderAdapter
 import com.keremkulac.karakoctekstil.databinding.FragmentOngoingOrderBinding
 import com.keremkulac.karakoctekstil.model.Order
 import com.keremkulac.karakoctekstil.viewmodel.OngoingOrderViewModel
-import com.keremkulac.karakoctekstil.viewmodel.OrderViewModel
 
 
 class OngoingOrderFragment : Fragment() {
 
     private lateinit var binding : FragmentOngoingOrderBinding
     private lateinit var viewModel : OngoingOrderViewModel
-    private val orderAdapter = OrderAdapter(arrayListOf())
+    private lateinit var ongoingOrderAdapter : OngoingOrderAdapter
     private lateinit var orderList : ArrayList<Order>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +30,7 @@ class OngoingOrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(OngoingOrderViewModel::class.java)
+        ongoingOrderAdapter = OngoingOrderAdapter(requireContext(),requireActivity(),viewModel,arrayListOf())
         createRecyclerView()
         refreshPatterns()
         observeLiveData()
@@ -46,7 +46,7 @@ class OngoingOrderFragment : Fragment() {
 
   private  fun createRecyclerView(){
       binding.ongoingOrderRecyclerView.layoutManager = LinearLayoutManager(context)
-      binding.ongoingOrderRecyclerView.adapter = orderAdapter
+      binding.ongoingOrderRecyclerView.adapter = ongoingOrderAdapter
   }
 
   private fun refreshPatterns(){
@@ -66,10 +66,13 @@ class OngoingOrderFragment : Fragment() {
                 binding.ongoingOrderRecyclerView.visibility = View.VISIBLE
                 binding.ongoingOrderError.visibility = View.GONE
                 binding.ongoingOrderLoading.visibility = View.GONE
-                orderAdapter.updateOrderList(orders)
+                ongoingOrderAdapter.updateOrderList(orders)
                 orderList.addAll(orders)
             }
         })
+    }
+    private fun decrease(){
+     //   viewModel.decreasePiece("61c2f485-4ff4-49ac-ac3e-ab322380c333")
     }
 
     private fun setSearchMenu(){
@@ -88,7 +91,7 @@ class OngoingOrderFragment : Fragment() {
                                 return false
                             }
                             override fun onQueryTextChange(newText: String): Boolean {
-                                viewModel.filter(newText,orderList,requireContext(),orderAdapter)
+                                viewModel.filter(newText,orderList,requireContext(),ongoingOrderAdapter)
                                 return true
                             }
                         })
